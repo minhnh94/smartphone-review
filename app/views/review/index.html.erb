@@ -1,0 +1,7 @@
+<h1>List Review</h1>
+
+<% @reviews.each do |review| %>
+	<p>Author:  <%= review.user_id %></p>
+	<p><%= review.content %></p>
+	<hr />
+<% end %>
