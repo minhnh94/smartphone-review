@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  root to: "reviews#index"
+  root "reviews#index"
 
   resources :reviews
   devise_for :users

@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :load_review, except: [:index, :new, :create]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @reviews = Review.order "created_at DESC"
@@ -13,11 +15,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new review_params
+    @review = current_user.reviews.build review_params
     if @review.save
-      redirect_to reviews_path, notice: "The review has been successfully created."
+      flash[:success] = "The review has been successfully created."
+      redirect_to reviews_path
     else
-      render action: "new"
+      flash.now[:danger] = "Failed to create the review."
+      render "new"
     end
   end
 
@@ -26,20 +30,22 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update_attributes review_params
-      redirect_to reviews_path, notice: "The review has been successfully updated."
+      flash[:success] = "The review has been successfully updated."
+      redirect_to reviews_path
     else
-      render action: "edit"
+      flash.now[:danger] = "Failed to edit the review."
+      render "edit"
     end
   end
 
   def destroy
     if @review.nil?
-      flash.now[:danger] = "The review does not exist."
+      flash[:danger] = "The review does not exist."
     else
       @review.destroy
       flash[:success] = "The review has been deleted."
     end
-    redirect_to :back
+    redirect_to reviews_path
   end
 
   private
@@ -49,5 +55,13 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit :title, :content
+  end
+
+  def correct_user
+    @review = current_user.reviews.find_by(id: params[:id])
+    if @review.nil?
+      flash[:danger] = "You are not authorized to perform this action."
+      redirect_to root_url
+    end
   end
 end
