@@ -1,13 +1,17 @@
-<h1>List Review</h1>
-
-<%= link_to "New Review", new_review_path %>
-<% @reviews.each do |review| %>
-  <h3><%= review.title.html_safe %></h3>
-  <p><%= review.content.html_safe %></p>
-  <%= link_to "Edit Review", edit_review_path(review) %>
-  <%= link_to "Delete Review", review_path(review), method: :delete,
-    data: {confirm: "Are you sure?"}  %>
-  <% if review != @reviews.last %>
+<% provide :title, "All Reviews" %>
+<div class="row">
+  <div class="col-md-12 center">
+    <h1>All Reviews</h1>
+    <%= link_to "New Review", new_review_path, class: "btn btn-primary" if current_user %>
     <hr />
-  <% end %>
-<% end %>
+    <% @reviews.each do |review| %>
+      <div>
+        <h3><%= link_to review.title.html_safe, review_path(review) %></h3>
+        <p><%= review.content.html_safe %></p>
+      </div>
+      <% if review != @reviews.last %>
+        <hr />
+      <% end %>
+    <% end %>
+  </div>
+</div>
