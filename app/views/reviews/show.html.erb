@@ -1,0 +1,19 @@
+<% provide :title, "Review" %>
+<div class="row">
+  <div class="col-md-12 center">
+    <div class="container">
+      <h3><%= @review.title.html_safe %></h3>
+      <p><%= @review.content.html_safe %></p>
+    </div>
+    <% if current_user %>
+      <br />
+      <div>
+        <%= link_to "Edit Review", edit_review_path(@review), class: "btn btn-default" %>
+        <%= link_to "Delete Review", review_path(@review), method: :delete,
+          data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+    <br />
+    <%= link_to "Back to All Reviews", reviews_path, class: "btn btn-default" %>
+  </div>
+</div>

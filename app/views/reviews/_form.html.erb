@@ -18,7 +18,12 @@
   <div>
     <%= f.cktext_area :content, rows: 10 %>
   </div>
+  <br>
   <div>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+  <br>
+  <div>
+    <%= link_to "Back to All Reviews", reviews_path, class: "btn btn-default" %>
   </div>
 <% end %>
