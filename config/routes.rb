@@ -8,4 +8,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/callbacks"
     }, skip: :passwords
   resources :users, :only => [:show]
+  namespace :admin do 
+  	resources :users
+  end
 end
