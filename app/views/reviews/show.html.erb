@@ -9,17 +9,20 @@
     </div>
     <div>
       <% if @review.comments.any? %>
-        <% @review.comments.each do |comment| %>
-          <div class="col-md-11">
-            <b><%= comment.user.email %></b>
-            <div>
-              <%= comment.content %>
-              <% if current_user == comment.user %>
-                <%= link_to "delete", comment, method: :delete %>
-              <% end %>
+        <div class="comment-box">
+          <% @review.comments.each do |comment| %>
+            <div class="comment-list">
+              <b><%= comment.user.email %></b>
+              <%= comment.created_at.strftime('%H:%M (%d-%m-%Y)') %>
+              <div>
+                <%= comment.content %>
+                <% if current_user == comment.user %>
+                  <%= link_to "delete", comment, method: :delete %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
     <div>
