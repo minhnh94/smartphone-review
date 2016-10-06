@@ -415,11 +415,9 @@ select {
   width: 100%;
 }
 .input-comment{
-  width: 100%;
-  border: 1px solid #e1e1e1;
-  padding: 10px;
-  margin-top: 5px;
-  font-family: arial;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 .comment-list{
   width: 65%;
