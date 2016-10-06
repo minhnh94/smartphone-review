@@ -12,7 +12,7 @@
           <h3><%= link_to review.title.html_safe, review_path(review) %></h3>
         </div>
         <p><%= review.content.html_safe %></p>
-        <p>View: <%= review.impressionist_count %></p>
+        <p><span class="glyphicon glyphicon-eye-open"></span> <%= review.impressionist_count %></p>
       </div>
       <% if review != @reviews.last %>
         <hr />
