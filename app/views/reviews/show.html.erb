@@ -17,7 +17,7 @@
               <div>
                 <%= comment.content %>
                 <% if current_user == comment.user %>
-                  <%= link_to "delete", comment, method: :delete %>
+                  <%= link_to "delete", comment, method: :delete, data: {confirm: "Are you sure?"} %>
                 <% end %>
               </div>
             </div>
@@ -26,7 +26,13 @@
       <% end %>
     </div>
     <div>
-      <%= render 'comments/form', review: @review %>
+      <% if user_signed_in? %>
+        <%= render 'comments/form', review: @review %>
+      <% else%>
+        <div class="center">
+          Please <%= link_to "Sign In", new_user_session_path %> to comment
+        </div>
+      <% end %>
     </div>
     <% if @review.user == current_user %>
       <br />
