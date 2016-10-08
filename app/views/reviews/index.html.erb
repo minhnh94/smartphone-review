@@ -1,10 +1,12 @@
 <% provide :title, "All Reviews" %>
+
 <div class="row">
   <div class="col-md-12">
     <div class="center">
       <h1>All Reviews</h1>
       <%= link_to "New Review", new_review_path, class: "btn btn-primary" if current_user %>
     </div>
+
     <hr />
     <% @reviews.each do |review| %>
       <div>
@@ -12,7 +14,10 @@
           <h3><%= link_to review.title.html_safe, review_path(review) %></h3>
         </div>
         <p><%= review.content.html_safe %></p>
-        <p><span class="glyphicon glyphicon-eye-open"></span> <%= review.impressionist_count filter: :ip_address %></p>
+        <div class="pull-right">
+          <span class="glyphicon glyphicon-eye-open"></span> <%= review.
+            impressionist_count filter: :ip_address %>
+        </div>
       </div>
       <% if review != @reviews.last %>
         <hr />

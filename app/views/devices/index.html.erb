@@ -1,30 +1,22 @@
-<p id="notice"><%= notice %></p>
+<% provide :title, "All Devices" %>
 
-<div class="center">
-  <h1>Devices</h1>
-  <%= link_to "New divide", new_device_path, class: "btn btn-primary"%>
-  <hr />
-</div>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-md-12">
+    <div class="center">
+      <h1>Devices</h1>
+      <hr />
+    </div>
 
-  <tbody>
     <% @devices.each do |device| %>
-      <tr>
-        <td><%= device.name %></td>
-        <td><%= device.content.html_safe %></td>
-        <td><%= link_to 'Show', device %></td>
-        <td><%= link_to 'Edit', edit_device_path(device) %></td>
-        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div>
+        <div class="center">
+          <h3><%= link_to device.name, device %></h3>
+          <p><%= device.content %></p>
+        </div>
+      </div>
+      <% if device != @devices.last %>
+        <hr />
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

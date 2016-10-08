@@ -11,8 +11,8 @@
                     Admin <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><%= link_to "Users", admin_users_path %></li>
-                    <li><%= link_to "Devices", devices_path %></li>
+                    <li><%= link_to "Devices", admins_devices_path %></li>
+                    <li><%= link_to "Users", admins_users_path %></li>
                   </ul>
                 </li>
             <% end %>
@@ -21,11 +21,12 @@
                 User <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <li><%= link_to "New Review", new_review_path %></li>
                 <li><%= link_to "My Reviews", current_user %></li>
-                <li><%= link_to "Profile", edit_user_registration_path %></li>
+                <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
                 <li class="divider"></li>
                 <li><%= link_to "Sign Out", destroy_user_session_path,
-                                method: :delete %></li>
+                  method: :delete %></li>
               </ul>
             </li>
 

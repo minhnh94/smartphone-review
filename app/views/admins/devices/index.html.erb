@@ -1,0 +1,35 @@
+<% provide :title, "All Devices" %>
+
+<div class="center">
+  <h1>Devices</h1>
+  <%= link_to "New device", new_admins_device_path, class: "btn btn-primary"%>
+  <hr />
+</div>
+
+<div class="panel panel-default">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-3">Name</th>
+        <th class="col-md-6">Content</th>
+        <th class="col-md-3 center">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @devices.each do |device| %>
+        <tr>
+          <td><%= link_to device.name, [:admins, device] %></td>
+          <td><%= device.content.html_safe %></td>
+          <td>
+            <%= link_to "Edit", edit_admins_device_path(device),
+              class: "btn btn-success col-md-4 col-md-offset-1" %>
+            <%= link_to "Delete", [:admins, device], method: :delete,
+              data: { confirm: "Are you sure?" },
+              class: "btn btn-danger col-md-4 col-md-offset-2" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

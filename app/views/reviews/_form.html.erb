@@ -1,35 +1,38 @@
-<% if @review.errors.any? %>
-    <ul>
-      <%= @review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-      <% end %>
-    </ul>
-<% end %>
 <%= form_for @review do |f| %>
-    <div>
-      <%= f.label :title %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-    <div>
-      <%= f.text_field :title %>
-    </div>
-    <div>
-      <%= f.label :device_id %>
-    </div>
-    <div>
-      <%= collection_select :review, :device_id, Device.all, :id, :name, prompt: true %>
-    </div>
-    <div>
-      <%= f.label :content %>
-    </div>
-    <div>
-      <%= f.cktext_area :content, rows: 10 %>
-    </div>
-    <br>
-    <div>
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-    <br>
-    <div>
-      <%= link_to "Back to All Reviews", reviews_path, class: "btn btn-default" %>
-    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :device_id %>
+    <%= f.collection_select :device_id, Device.all, :id, :name,
+      {prompt: true}, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.cktext_area :content, rows: 10, class: "ckeditor" %>
+  </div>
+
+  <div>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+  <br>
+  <div class="center">
+    <%= link_to "Back to All Reviews", reviews_path, class: "btn btn-default" %>
+  </div>
 <% end %>

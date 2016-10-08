@@ -17,3 +17,18 @@
 //= require ckeditor/init
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  setTimeout(function() {
+    $('.alert').fadeOut('normal');
+  }, 3000);
+});
+
+jQuery(document).on('turbolinks:load', function() {
+    $('textarea.ckeditor').each(function() {
+        if($(this).css('visibility') != 'hidden')
+            CKEDITOR.replace(this);
+    });
+    if(Turbolinks)
+        Turbolinks.clearCache();
+});
