@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admins::UsersController < ApplicationController
   before_action :require_admin
   before_action :set_user, except: [:index, :new, :create]
 
@@ -13,28 +13,30 @@ class Admin::UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-    @user = User.find_by id: params[:id]
-  end
-
   def create
     @user = User.new user_params
     if @user.save
       flash[:success] = "The user has been successfully created."
+      redirect_to admins_users_path
     else
       flash.now[:danger] = "Failed to create the user."
+      render :new
     end
-    redirect_to admin_users_path
+  end
+
+  def edit
+    @user = User.find_by id: params[:id]
   end
 
   def update
-     @user = User.find_by id: params[:id]
-     if @user.update_attributes(user_params)
+    @user = User.find_by id: params[:id]
+    if @user.update_attributes(user_params)
       flash[:success] = "The user has been successfully update."
-     else
+      redirect_to admins_users_path
+    else
       flash.now[:danger] = "Failed to update the user."
+      render :edit
     end
-    redirect_to admin_users_path
   end
 
   def destroy
@@ -42,9 +44,9 @@ class Admin::UsersController < ApplicationController
     if @user.destroy
       flash[:success] = "The user has been successfully delete."
     else
-      flash.now[:danger] = "Failed to update the user."
+      flash[:danger] = "Failed to update the user."
     end
-    redirect_to admin_users_path
+    redirect_to admins_users_path
   end
 
   private
