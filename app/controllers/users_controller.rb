@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:show]
 
   def show
-  @reviews = @user.reviews
-  @total = @user.reviews.count
+    @reviews = @user.reviews.page(params[:page]).per 10
+    @total = @user.reviews.count
   end
 
   private

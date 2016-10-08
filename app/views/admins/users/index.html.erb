@@ -14,20 +14,13 @@
         <th class="col-md-3 center">Actions</th>
       </tr>
     </thead>
-      <tbody>
-      <% @users.each do |user| %>
-          <tr>
-            <td><%= link_to user.email, [:admins, user] %></td>
-            <% unless current_user == user %>
-              <td>
-                <%= link_to "Edit", edit_admins_user_path(user),
-              class: "btn btn-success col-md-4 col-md-offset-1" %>
-                <%= link_to "Delete", [:admins, user], method: :delete,
-              data: { confirm: "Are you sure?" },
-              class: "btn btn-danger col-md-4 col-md-offset-2" %>
-            <% end %>
-          </tr>
-      <% end %>
+
+    <tbody id="users">
+      <%= render @users %>
     </tbody>
   </table>
+
+  <div class="panel-footer center">
+    <%= paginate @users, window: 3, remote: true %>
+  </div>
 </div>

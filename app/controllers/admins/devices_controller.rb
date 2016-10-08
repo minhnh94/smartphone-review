@@ -3,7 +3,7 @@ class Admins::DevicesController < ApplicationController
   before_action :set_device, except: [:index, :new, :create]
 
   def index
-    @devices = Device.all
+    @devices = Device.all.page(params[:page]).per 10
   end
 
   def show

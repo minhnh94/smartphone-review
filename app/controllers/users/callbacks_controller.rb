@@ -7,6 +7,9 @@ class Users::CallbacksController < Devise::OmniauthCallbacksController
           if @user.persisted?
             flash[:success] = t("devise.omniauth_callbacks.success",
               kind: "#{provider}".capitalize)
+            if @user.encrypted_password.blank?
+              flash[:warning] = t "devise.omniauth_callbacks.no_password_set"
+            end
             sign_in_and_redirect @user
           else
             session["devise.user_attributes"] = @user.attributes

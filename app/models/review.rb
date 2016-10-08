@@ -5,5 +5,6 @@ class Review < ApplicationRecord
 
   validates :title, presence: true
 
-  is_impressionable counter_cache: true, column_name: :counter_cache
+  is_impressionable counter_cache: true, column_name: :counter_cache,
+    unique: :session_hash
 end
