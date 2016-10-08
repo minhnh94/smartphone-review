@@ -4,7 +4,8 @@ class ReviewsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @reviews = Review.order "created_at DESC"
+    @reviews = Review.order(sort_column + " " + sort_direction).
+      page(params[:page]).per 10
   end
 
   def show
@@ -66,5 +67,13 @@ class ReviewsController < ApplicationController
       flash[:danger] = "You are not authorized to perform this action."
       redirect_to root_url
     end
+  end
+
+  def sort_column
+    Review.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
   end
 end

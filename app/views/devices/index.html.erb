@@ -2,21 +2,16 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="center">
+    <div class="row center">
       <h1>Devices</h1>
-      <hr />
     </div>
 
-    <% @devices.each do |device| %>
-      <div>
-        <div class="center">
-          <h3><%= link_to device.name, device %></h3>
-          <p><%= device.content %></p>
-        </div>
-      </div>
-      <% if device != @devices.last %>
-        <hr />
-      <% end %>
-    <% end %>
+    <div class="row" id="devices">
+      <%= render @devices %>
+    </div>
+
+    <div class="row center">
+      <%= paginate @devices, window: 3, remote: true %>
+    </div>
   </div>
 </div>

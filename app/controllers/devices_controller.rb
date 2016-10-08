@@ -2,7 +2,7 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:show]
 
   def index
-    @devices = Device.all
+    @devices = Device.all.page(params[:page]).per 10
   end
 
   def show
