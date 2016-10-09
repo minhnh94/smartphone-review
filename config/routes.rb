@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/callbacks"
     }, skip: :passwords
   resources :users, :only => [:show]
+  post "/users/:id/unlink" => "users/unlink#facebook", as: "unlink_facebook"
 
   namespace :admins do
     resources :devices
