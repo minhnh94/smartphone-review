@@ -12,9 +12,16 @@ class Users::CallbacksController < Devise::OmniauthCallbacksController
             end
             sign_in_and_redirect @user
           else
-            session["devise.user_attributes"] = @user.attributes
-            flash[:notice] = t "user.complete_registration"
-            redirect_to new_user_registration_path
+            if current_user
+              auth = request.env["omniauth.auth"]
+              current_user.link_with_facebook auth.provider, auth.uid
+              flash[:success] = t "devise.omniauth_callbacks.linked"
+              redirect_to edit_user_registration_path
+            else
+              session["devise.user_attributes"] = @user.attributes
+              flash[:notice] = t "devise.omniauth_callbacks.complete_registration"
+              redirect_to new_user_registration_path
+            end
           end
         end
       }

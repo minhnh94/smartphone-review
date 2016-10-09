@@ -26,7 +26,18 @@
             class: "form-control" %>
         <% end %>
 
+        <% if f.object.provider.blank? %>
+          <a href="auth/facebook" class="auth_provider">
+            <%= image_tag "authbuttons/facebook_64.png", size: "64x64",
+            alt: "Link a Facebook account" %>Link a Facebook account</a>
+        <% else %>
+          <%= link_to unlink_facebook_path(@user), method: :post do %>
+            <%= image_tag "authbuttons/facebook_64.png", size: "64x64",
+              alt: "Unlink your Facebook account" %>Unlink your Facebook account
+          <% end %>
+        <% end %>
         <div class="actions">
+          <br>
           <%= f.submit "Update", class: "btn btn-primary" %>
         </div>
       <% end %>
@@ -37,3 +48,4 @@
     </div>
   </div>
 </div>
+

@@ -9,8 +9,9 @@
 
     <div class="row">
       <div class="pull-right">
-        Order by: <%= link_to "Submitted", sort: "created_at", direction: "desc"
-           %> | <%= link_to "View Count", sort: "counter_cache", direction: "desc" %>
+        Order by: <%= link_to "Submitted", sort: "created_at", direction: "desc",
+          remote: true %> | <%= link_to "View Count", sort: "counter_cache",
+          direction: "desc", remote: true %>
       </div>
     </div>
 

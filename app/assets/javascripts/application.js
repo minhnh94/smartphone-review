@@ -21,7 +21,7 @@
 $(document).on('turbolinks:load', function() {
   setTimeout(function() {
     $('.alert').fadeOut('normal');
-  }, 5000);
+  }, 8000);
 });
 
 jQuery(document).on('turbolinks:load', function() {
