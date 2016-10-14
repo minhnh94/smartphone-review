@@ -4,8 +4,8 @@ class ReviewsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @reviews = Review.order(sort_column + " " + sort_direction).
-      page(params[:page]).per 10
+    @search = Review.search(params[:q])
+    @reviews = @search.result.page(params[:page]).per 10
   end
 
   def show
