@@ -1,0 +1,14 @@
+<br>
+<div class="search-box">
+  <%= search_form_for @search, remote: true do |f| %>
+    <div class="field">
+      <%= f.text_field :title_or_content_cont %>
+    </div>
+    <div class="actions"><%= f.submit "Search" %></div>
+  <% end %>
+</div>
+<div class="filter">
+  Order by: <%= link_to "Submitted", sort: "created_at", direction: "desc",
+    remote: true %> | <%= link_to "View Count", sort: "counter_cache",
+    direction: "desc", remote: true %>
+</div>

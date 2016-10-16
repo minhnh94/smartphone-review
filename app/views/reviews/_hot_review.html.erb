@@ -1,0 +1,9 @@
+<div class="row review-list">
+  <div class="center">
+    <h4><%= link_to hot_review.title.html_safe, review_path(hot_review) %></h4>
+  </div>
+  <div>
+    <span class="glyphicon glyphicon-eye-open"></span> <%= hot_review.
+      impressionist_count filter: :session_hash %>
+  </div>
+</div>
