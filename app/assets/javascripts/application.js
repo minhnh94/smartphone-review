@@ -28,6 +28,12 @@ $(document).on('turbolinks:load', function() {
     $(this).siblings().removeClass('page-load-active');
     $(this).addClass('page-load-active');
   });
+
+  $('.page>a,.first>a,.last>a,.next>a,.prev>a').click(function () {
+    $('html, body').animate({
+      scrollTop: $(".scrolltop-anchor").offset().top - 110
+    }, 300);
+  });
 });
 
 jQuery(document).on('turbolinks:load', function() {

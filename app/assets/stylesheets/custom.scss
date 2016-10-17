@@ -109,6 +109,15 @@ header {
   margin-top: 0;
 }
 
+.dropdown-menu > li > a {
+  border-bottom: 2px solid transparent;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: transparent;
+  border-bottom: 2px solid #25AF61;
+}
+
 #logo {
   float: left;
   margin-top: 10px;

@@ -48,10 +48,11 @@
             <div class="filter">
               <%= link_to "Newest", {sort: "created_at", direction: "desc",
                 remote: true}, class: "sort-link sort-link-active" %>
-              <%= link_to "Trending", {sort: "counter_cache", direction:
+              <%= link_to "Most Viewed", {sort: "counter_cache", direction:
                 "desc", remote: true}, class: "sort-link" %>
             </div>
           </div>
+          <div class="scrolltop-anchor"></div>
           <div id="reviews">
             <%= render @reviews %>
           </div>
