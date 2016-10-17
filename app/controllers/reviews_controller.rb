@@ -5,7 +5,9 @@ class ReviewsController < ApplicationController
 
   def index
     @search = Review.search(params[:q])
-    @reviews = @search.result.page(params[:page]).per 10
+    @reviews = @search.result.order(sort_column + " " + sort_direction).
+      page(params[:page]).per 10
+    @hot_reviews = Review.order("counter_cache DESC limit 5")
   end
 
   def show
@@ -35,7 +37,7 @@ class ReviewsController < ApplicationController
   def update
     if @review.update_attributes review_params
       flash[:success] = "The review has been successfully updated."
-      redirect_to reviews_path
+      redirect_to review_path
     else
       flash.now[:danger] = "Failed to edit the review."
       render "edit"

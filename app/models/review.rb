@@ -4,6 +4,7 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :title, presence: true
+  validates :device_id, presence: true
 
   is_impressionable counter_cache: true, column_name: :counter_cache,
     unique: :session_hash
