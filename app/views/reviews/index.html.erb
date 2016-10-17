@@ -45,13 +45,13 @@
       <div class="row">
         <div class="col-md-8">
           <div class="row">
-            <div class="filter pull-right">
-              Order by: <%= link_to "Submitted", sort: "created_at", direction: "desc",
-                remote: true %> | <%= link_to "View Count", sort: "counter_cache",
-                direction: "desc", remote: true %>
+            <div class="filter">
+              <%= link_to "Newest", {sort: "created_at", direction: "desc",
+                remote: true}, class: "sort-link sort-link-active" %>
+              <%= link_to "Trending", {sort: "counter_cache", direction:
+                "desc", remote: true}, class: "sort-link" %>
             </div>
           </div>
-
           <div id="reviews">
             <%= render @reviews %>
           </div>

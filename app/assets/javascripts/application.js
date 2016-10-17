@@ -22,6 +22,12 @@ $(document).on('turbolinks:load', function() {
   setTimeout(function() {
     $('.alert').fadeOut('normal');
   }, 8000);
+
+  $('.sort-link-active').addClass('page-load-active');
+  $('.sort-link').click(function () {
+    $(this).siblings().removeClass('page-load-active');
+    $(this).addClass('page-load-active');
+  });
 });
 
 jQuery(document).on('turbolinks:load', function() {
