@@ -4,7 +4,7 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
-$white: #F2F1F1;
+$white: #fff;
 $shadow-color: #4A6EA9;
 
 @mixin box_sizing {
@@ -21,6 +21,7 @@ $shadow-color: #4A6EA9;
 
 body {
   padding-top: 60px;
+  background-color: #eaeaea;
 }
 
 section {

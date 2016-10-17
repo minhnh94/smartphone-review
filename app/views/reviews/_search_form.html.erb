@@ -1,14 +1,13 @@
-<br>
 <div class="search-box">
+  <h2>
+    Search form
+  </h2>
   <%= search_form_for @search, remote: true do |f| %>
-    <div class="field">
-      <%= f.text_field :title_or_content_cont %>
+    <div class="input-group">
+      <%= f.text_field :title_or_content_cont, class: "form-control", placeholder: "Search for..." %>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
     </div>
-    <div class="actions"><%= f.submit "Search" %></div>
   <% end %>
-</div>
-<div class="filter">
-  Order by: <%= link_to "Submitted", sort: "created_at", direction: "desc",
-    remote: true %> | <%= link_to "View Count", sort: "counter_cache",
-    direction: "desc", remote: true %>
 </div>

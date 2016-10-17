@@ -39,23 +39,35 @@
       </div>
     </div>
 
+    <br>
+
     <div class="container">
       <div class="row">
-        <div class="col-md-8" id="reviews">
-          <%= render @reviews %>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="filter pull-right">
+              Order by: <%= link_to "Submitted", sort: "created_at", direction: "desc",
+                remote: true %> | <%= link_to "View Count", sort: "counter_cache",
+                direction: "desc", remote: true %>
+            </div>
+          </div>
+
+          <div id="reviews">
+            <%= render @reviews %>
+          </div>
           <div class="center">
             <%= paginate @reviews, window: 3, remote: true %>
           </div>
         </div>
 
         <div class="col-md-4">
-          <%= render "search_form" %>
-          <hr>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <%= render "search_form" %>
 
-          <div>
-            <h2 class="center">Hot Reviews</h2>
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1">
+              <div>
+                <hr>
+                <h2 class="center">Hot Reviews</h2>
                 <%= render partial: "hot_review", collection: @hot_reviews %>
               </div>
             </div>
