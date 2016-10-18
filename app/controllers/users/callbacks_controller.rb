@@ -5,12 +5,21 @@ class Users::CallbacksController < Devise::OmniauthCallbacksController
         def #{provider}
           @user = User.from_omniauth request.env["omniauth.auth"]
           if @user.persisted?
-            flash[:success] = t("devise.omniauth_callbacks.success",
-              kind: "#{provider}".capitalize)
-            if @user.encrypted_password.blank?
-              flash[:warning] = t "devise.omniauth_callbacks.no_password_set"
+            if !current_user
+              flash[:success] = t("devise.omniauth_callbacks.success",
+                kind: "#{provider}".capitalize)
+              if @user.encrypted_password.blank?
+                flash[:warning] = t "devise.omniauth_callbacks.no_password_set"
+              end
+              sign_in_and_redirect @user
+            else
+              if @user != current_user
+                flash[:danger] = t "devise.omniauth_callbacks.identity_used"
+              else
+                flash[:warning] = t "devise.failure.already_authenticated"
+              end
+              redirect_to edit_user_registration_path
             end
-            sign_in_and_redirect @user
           else
             if current_user
               auth = request.env["omniauth.auth"]

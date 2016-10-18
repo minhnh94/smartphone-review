@@ -28,6 +28,7 @@ en:
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
+      identity_used: "This Facebook account has already been linked to another user's profile."
       linked: "Your Facebook account has been linked with your profile."
       unlinked: "Your Facebook account has been unlinked from your profile."
       complete_registration: "A user with this email already exists. Please choose a different email to complete signing up, or sign in as that user and to to User > Edit Profile to link your Facebook account."
