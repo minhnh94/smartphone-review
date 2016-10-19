@@ -15,7 +15,7 @@
   <td>
     <%= link_to "Edit", edit_admins_review_path(review),
       class: "btn btn-success col-md-5 col-md-offset-1" %>
-    <%= link_to "Delete", admins_review_path(review), method: :delete,
+    <%= button_to "Delete", admins_review_path(review), method: :delete,
       data: { confirm: "Are you sure?" },
       class: "btn btn-danger col-md-5 col-md-offset-1" %>
   </td>

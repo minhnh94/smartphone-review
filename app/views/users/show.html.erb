@@ -15,10 +15,12 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="col-md-3">Title</td>
-        <th class="col-md-5">Summary</td>
-        <th class="col-md-1">Status</td>
-        <th class="col-md-3 center">Actions</td>
+        <th class="col-md-1">Created At</th>
+        <th class="col-md-2">Title</th>
+        <th class="col-md-5">Summary</th>
+        <th class="col-md-1">Views</th>
+        <th class="col-md-1">Status</th>
+        <th class="col-md-2 center">Actions</th>
       </tr>
     </thead>
 
@@ -27,7 +29,9 @@
     </tbody>
   </table>
 
-  <div class="panel-footer center">
-    <%= paginate @reviews, window: 3, remote: true %>
-  </div>
+  <% if @reviews.count >= 10 %>
+    <div class="panel-footer center">
+      <%= paginate @reviews, window: 3, remote: true %>
+    </div>
+  <% end %>
 </div>

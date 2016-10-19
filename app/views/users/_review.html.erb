@@ -1,19 +1,22 @@
 <tr>
+  <td><%= review.created_at.strftime("%d/%m/%Y %H:%M") %></td>
   <td><%= link_to review.title, review %></td>
   <td><%= review.summary.truncate(170, separator: " ") %></td>
-  <td><% if review.pending?  %>
-            Pending
-      <% elsif review.approved?  %>
-            Approval
-      <% else  %>
-            Rejected
-      <% end %>
+  <td><span class="glyphicon glyphicon-eye-open"></span> <%= review.impressionist_count filter: :session_hash %></td>
+  <td>
+    <% if review.pending?  %>
+      Pending
+    <% elsif review.approved?  %>
+      Approved
+    <% else  %>
+      Rejected
+    <% end %>
   </td>
   <td>
     <%= link_to "Edit", edit_review_path(review),
-      class: "btn btn-success col-md-4 col-md-offset-1" %>
-    <%= link_to "Delete", review, method: :delete,
+      class: "btn btn-success col-md-5 col-md-offset-1" %>
+    <%= button_to "Delete", review, method: :delete,
       data: { confirm: "Are you sure?" },
-      class: "btn btn-danger col-md-4 col-md-offset-2" %>
+      class: "btn btn-danger col-md-5 col-md-offset-1" %>
   </td>
 </tr>

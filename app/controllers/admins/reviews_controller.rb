@@ -65,7 +65,9 @@ class Admins::ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit :title, :content, :device_id, :status
+    params.require(:review).permit :title, :content, :device_id, :cover_image,
+      :summary, :the_good, :the_bad, :score_design, :score_screen,
+      :score_performance, :score_battery, :score_camera, :status
   end
 
   def sort_column

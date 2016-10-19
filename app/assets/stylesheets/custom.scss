@@ -5,7 +5,7 @@
 
 $gray-medium-light: #eaeaea;
 $white: #fff;
-$shadow-color: #4A6EA9;
+$shadow-color: #195a36;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -743,4 +743,22 @@ select {
   width: 46px;
   height: 46px;
   opacity: 0.5;
+}
+
+.carousel-inner > .item > img {
+  margin: 0 auto;
+}
+
+.carousel-caption {
+  a {
+    text-shadow: #fff 0 0 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  a:hover, a:focus, a:active {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: #000 0 0 20px !important;
+  }
 }

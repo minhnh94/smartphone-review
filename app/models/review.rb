@@ -5,8 +5,8 @@ class Review < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_attached_file :cover_image,
-    styles: { thumb: ["200x115#", :jpg] },
-    convert_options: { thumb: "-strip" },
+    styles: { thumb: ["200x115#", :jpg], slideshow: ["800x400#", :jpg] },
+    convert_options: { thumb: "-strip", slideshow: "-strip" },
     default_url: ":style/missing.png"
 
   validates :title, presence: true
@@ -28,4 +28,6 @@ class Review < ApplicationRecord
     unique: :session_hash
 
   enum status: [:pending, :approved, :rejected]
+
+  scope :with_in_30_days, ->{ where('created_at > ?', 30.days.ago) }
 end
