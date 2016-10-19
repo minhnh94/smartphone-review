@@ -37,10 +37,19 @@ $(document).on('turbolinks:load', function() {
 });
 
 jQuery(document).on('turbolinks:load', function() {
-    $('textarea.ckeditor').each(function() {
-        if($(this).css('visibility') != 'hidden')
-            CKEDITOR.replace(this);
-    });
-    if(Turbolinks)
-        Turbolinks.clearCache();
+  $('textarea.ckeditor').each(function() {
+    if($(this).css('visibility') != 'hidden')
+      CKEDITOR.replace(this);
+  });
+  if(Turbolinks)
+    Turbolinks.clearCache();
+});
+
+$(window).on("scroll", function() {
+  var scrollPos = $(window).scrollTop();
+  if (scrollPos <= 0) {
+      $(".go-top").fadeOut();
+  } else {
+      $(".go-top").fadeIn();
+  }
 });
