@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :devices, only: [:index, :show]
   resources :reviews
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:index, :create, :destroy]
   devise_for :users, controllers: {
     omniauth_callbacks: "users/callbacks"
     }, skip: :passwords

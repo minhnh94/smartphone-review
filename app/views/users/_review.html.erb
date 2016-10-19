@@ -1,6 +1,6 @@
 <tr>
   <td><%= link_to review.title, review %></td>
-  <td></td>
+  <td><%= review.summary.truncate(170, separator: " ") %></td>
   <td>
     <%= link_to "Edit", edit_review_path(review),
       class: "btn btn-success col-md-4 col-md-offset-1" %>

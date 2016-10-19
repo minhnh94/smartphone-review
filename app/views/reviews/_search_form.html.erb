@@ -1,7 +1,4 @@
 <div class="search-box">
-  <h2>
-    Search form
-  </h2>
   <%= search_form_for @search, remote: true do |f| %>
     <div class="input-group">
       <%= f.text_field :title_or_content_cont, class: "form-control", placeholder: "Search for..." %>

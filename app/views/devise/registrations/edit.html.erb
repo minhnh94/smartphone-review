@@ -13,8 +13,11 @@
         <div class="panel-body">
           <%= devise_error_messages! %>
 
+          <%= f.label :name %><br/>
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+
           <%= f.label :email %><br/>
-          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+          <%= f.email_field :email, class: "form-control" %>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div><%= t :waiting, content: resource.unconfirmed_email %></div>
