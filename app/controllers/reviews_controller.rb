@@ -4,14 +4,14 @@ class ReviewsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @search = Review.search(params[:q])
+    @search = Review.approved.search(params[:q])
     @reviews = @search.result.order(sort_column + " " + sort_direction).
       page(params[:page]).per 10
-    @hot_reviews = Review.order("counter_cache DESC limit 5")
+    @hot_reviews = Review.approved.order("counter_cache DESC limit 5")
   end
 
   def show
-    @hot_reviews = Review.order("counter_cache DESC limit 5")
+    @hot_reviews = Review.approved.order("counter_cache DESC limit 5")
     @review = Review.find_by_id params[:id]
     impressionist @review
     @comment = Comment.new

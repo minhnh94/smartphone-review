@@ -18,6 +18,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :status %>
+      <%= f.select :status, options_for_select(Review.statuses.map {|k,v| [k,k]}, @review.status), {}, {class: 'form-control'} %>
+    </div>
+
+    <div class="field">
       <%= f.label :device_id %>
       <%= f.collection_select :device_id, Device.all, :id, :name,
                               {prompt: true}, class: "form-control" %>

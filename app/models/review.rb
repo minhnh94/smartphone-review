@@ -26,4 +26,6 @@ class Review < ApplicationRecord
 
   is_impressionable counter_cache: true, column_name: :counter_cache,
     unique: :session_hash
+
+  enum status: [:pending, :approved, :rejected]
 end
