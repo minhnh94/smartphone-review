@@ -31,11 +31,21 @@ class Admins::ReviewsController < ApplicationController
 
   def update
     if @review.update_attributes review_params
-      flash[:success] = "The review has been successfully updated."
-      redirect_to admins_reviews_path
+      respond_to do |format|
+        format.html do
+          flash[:success] = "The review has been successfully updated."
+          redirect_to admins_reviews_path
+        end
+        format.js
+      end
     else
-      flash.now[:danger] = "Failed to edit the review."
-      render "edit"
+      respond_to do |format|
+        format.html do
+          flash.now[:danger] = "Failed to edit the review."
+          render "edit"
+        end
+        format.js
+      end
     end
   end
 

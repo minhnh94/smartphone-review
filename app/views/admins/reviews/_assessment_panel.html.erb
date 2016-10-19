@@ -1,0 +1,38 @@
+<div class="panel panel-default assessment-panel">
+  <div class="panel-heading">
+    <h3>
+      Assessing <%= link_to @review.user.name, [:admins, @review.user] %>'s review
+    </h3>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Created At</th>
+        <th>Current Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><%= @review.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= @review.status.capitalize %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1">
+        <%= link_to "Approve", admins_review_path(@review, review: {status: :approved}),
+          method: :put, data: {confirm: "Are you sure?"}, remote: true, disabled: @review.approved?,
+          class: "btn btn-success col-md-12" %>
+      </div>
+      <div class="col-md-4 col-md-offset-2">
+        <%= link_to "Reject", admins_review_path(@review, review: {status: :rejected}),
+         method: :put, data: {confirm: "Are you sure?"}, remote: true, disabled: @review.rejected?,
+          class: "btn btn-danger col-md-12" %>
+      </div>
+    </div>
+  </div>
+</div>

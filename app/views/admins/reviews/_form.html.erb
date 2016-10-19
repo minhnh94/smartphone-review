@@ -1,44 +1,107 @@
-<%= form_for [:admins, @review] do |f| %>
-    <% if @review.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<%= form_for [:admins, @review], html: { multipart: true } do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-          <ul>
-            <% @review.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
+      <ul>
+        <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>Status</b></span>
+    <%= f.select :status, options_for_select(Review.statuses.map {|k, v|
+      [k.capitalize, k]}, @review.status), {}, {class: 'form-control'} %>
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>Title</b></span>
+    <%= f.text_area :title, autofocus: true, class: "form-control" %>
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>Device</b></span>
+    <%= f.collection_select :device_id, Device.all, :id, :name,
+      {prompt: true}, class: "form-control" %>
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>Summary</b></span>
+    <%= f.text_area :summary, class: "form-control" %>
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>Cover Image</b></span>
+    <%= f.file_field :cover_image, class: 'form-control'%>
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>The Good</b></span>
+    <%= f.text_area :the_good, class: "form-control" %>
+  </div>
+  <br>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2"><b>The Bad</b></span>
+    <%= f.text_area :the_bad, class: "form-control" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <div class="panel panel-default">
+      <div class="panel-heading"><b>Scoring<b></div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-1">
+            <%= f.label :design %>
+            <%= f.select :score_design, options_for_select(1..10,
+              f.object.score_design), {}, { class: "form-control" } %>
+          </div>
+          <div class="col-md-2">
+            <%= f.label :screen %>
+            <%= f.select :score_screen, options_for_select(1..10,
+              f.object.score_screen), {}, { class: "form-control" } %>
+          </div>
+          <div class="col-md-2">
+            <%= f.label :performance %>
+            <%= f.select :score_performance, options_for_select(1..10,
+              f.object.score_performance), {}, { class: "form-control" } %>
+          </div>
+          <div class="col-md-2">
+            <%= f.label :battery %>
+            <%= f.select :score_battery, options_for_select(1..10,
+            f.object.score_battery), {}, { class: "form-control" } %>
+          </div>
+          <div class="col-md-2">
+            <%= f.label :camera %>
+            <%= f.select :score_camera, options_for_select(1..10,
+            f.object.score_camera), {}, { class: "form-control" } %>
+          </div>
         </div>
-    <% end %>
-
-    <p>This is admin form</p>
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title, autofocus: true, class: "form-control" %>
+      </div>
     </div>
+  </div>
 
-    <div class="field">
-      <%= f.label :status %>
-      <%= f.select :status, options_for_select(Review.statuses.map {|k,v| [k,k]}, @review.status), {}, {class: 'form-control'} %>
-    </div>
+  <div class="field center">
+    <%= f.label :content %>
+    <%= f.cktext_area :content, rows: 10, class: "ckeditor" %>
+  </div>
 
-    <div class="field">
-      <%= f.label :device_id %>
-      <%= f.collection_select :device_id, Device.all, :id, :name,
-                              {prompt: true}, class: "form-control" %>
-    </div>
+  <div>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
 
-    <div class="field">
-      <%= f.label :content %>
-      <%= f.cktext_area :content, rows: 10, class: "ckeditor" %>
-    </div>
-
-    <div>
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-
-    <br>
-    <div class="center">
-      <%= link_to "Back to All Reviews", admins_reviews_path, class: "btn btn-default" %>
-    </div>
+  <br>
+  <div class="center">
+    <%= link_to "Back to All Reviews", admins_reviews_path, class: "btn btn-default" %>
+  </div>
 <% end %>
