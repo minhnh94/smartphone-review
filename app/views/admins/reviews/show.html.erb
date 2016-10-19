@@ -2,64 +2,51 @@
 <div class="row">
   <div class="col-md-12">
     <div class="container">
-      <div class="center">
-        <h3><%= @review.title.html_safe %></h3>
-        <i>Review for <%= link_to @review.device.name, @review.device %></i>
-      </div>
-      <div class="content"><%= @review.content.html_safe %></div>
-    </div>
-
-    <hr>
-    <div class="center">
-      <%= link_to "Edit Review", edit_admins_review_path(@review), class: "btn btn-success" %>
-      <%= link_to "Delete Review", admins_review_path(@review), method: :delete,
-                  data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-    </div>
-    <hr>
-    <div>
-      <div class="comment-title">
-        <b>Comments</b>
-      </div
-      >
-      <div class="comment-box">
-        <% if @review.comments.any? %>
-          <% @review.comments.each do |comment| %>
-            <div class="comment-list">
-              <div><%= comment.content %></div>
-              <b><%= comment.user.email %></b>
-              <%= comment.created_at.strftime(' - %d-%m-%Y %H:%M - ') %>
-              <% if current_user == comment.user %>
-                <%= link_to "delete", comment, method: :delete,
-                  data: {confirm: "Are you sure?"},
-                  class: "btn btn-xs btn-danger" %>
-              <% end %>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row review-content">
+            <h3><%= @review.title.html_safe %></h3>
+            <div class="quote">
+              A Review for <%= link_to @review.device.name, @review.device %>
             </div>
-          <% end %>
-        <% end %>
+            <div class="quote"><%= @review.summary %></div>
+            <%= render "compares" %>
+            <div class="content review-body"><%= @review.content.html_safe %></div>
+            <div class="author">
+              <span class="glyphicon glyphicon-user" aria-hidden="true"><%= @review.user.name %></span>
+              <span class="glyphicon glyphicon-calendar" aria-hidden="true"><%= @review.created_at.strftime("%d/%m/%Y %H:%M") %></span>
+            </div>
+            <%= render "scores" %>
+          </div>
 
-        <% if user_signed_in? %>
+          <hr>
           <div class="row">
-            <%= render 'comments/form', review: @review %>
+            <div class="comment-title">
+              <b>Comments</b>
+            </div>
+            <div class="comment-box">
+              <div id="comments-list">
+                <% if @review.comments.any? %>
+                  <%= render @review.comments %>
+                <% end %>
+              </div>
+              <div id="comment-form">
+                <% if user_signed_in? %>
+                  <%= render "comments/form", comment: @comment, review: @review %>
+                <% else%>
+                  <div class="center">
+                    Please <%= link_to "Sign In", new_user_session_path %> to leave a comment!
+                  </div>
+                <% end %>
+              </div>
+            </div>
           </div>
-        <% else%>
           <div class="center">
-            Please <%= link_to "Sign In", new_user_session_path %> to leave a comment!
+            <br />
+            <%= link_to "Back to All Reviews", admins_reviews_path, class: "btn btn-default" %>
           </div>
-        <% end %>
+        </div>
       </div>
-    </div>
-
-    <% if @review.user == current_user %>
-      <hr>
-      <div class="center">
-        <%= link_to "Edit Review", edit_review_path(@review), class: "btn btn-success" %>
-        <%= link_to "Delete Review", review_path(@review), method: :delete,
-          data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-      </div>
-    <% end %>
-    <div class="center">
-      <br />
-      <%= link_to "Back to All Reviews", admins_reviews_path, class: "btn btn-default" %>
     </div>
   </div>
 </div>

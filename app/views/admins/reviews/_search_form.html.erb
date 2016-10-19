@@ -1,0 +1,10 @@
+<div class="search-box">
+  <%= search_form_for @search, remote: true do |f| %>
+    <div class="input-group">
+      <%= f.text_field :title_or_content_cont, class: "form-control", placeholder: "Search for..." %>
+      <span class="input-group-btn">
+        <%= f.submit "Go!", class: "btn btn-default" %>
+      </span>
+    </div>
+  <% end %>
+</div>

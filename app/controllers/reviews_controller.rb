@@ -11,9 +11,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @search = Review.search(params[:q])
-    @reviews = @search.result.order(sort_column + " " + sort_direction).
-      page(params[:page]).per 10
     @hot_reviews = Review.order("counter_cache DESC limit 5")
     @review = Review.find_by_id params[:id]
     impressionist @review

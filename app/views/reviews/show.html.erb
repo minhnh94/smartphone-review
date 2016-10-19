@@ -16,7 +16,7 @@
               <span class="glyphicon glyphicon-user" aria-hidden="true"><%= @review.user.name %></span>
               <span class="glyphicon glyphicon-calendar" aria-hidden="true"><%= @review.created_at.strftime("%d/%m/%Y %H:%M") %></span>
             </div>
-            <%= render "ratings" %>
+            <%= render "scores" %>
           </div>
 
           <hr>
@@ -25,20 +25,20 @@
               <b>Comments</b>
             </div>
             <div class="comment-box">
-              <% if @review.comments.any? %>
-                <div id="comments-list">
+              <div id="comments-list">
+                <% if @review.comments.any? %>
                   <%= render @review.comments %>
-                </div>
-              <% end %>
-              <% if user_signed_in? %>
-                <div id="comment-form">
+                <% end %>
+              </div>
+              <div id="comment-form">
+                <% if user_signed_in? %>
                   <%= render "comments/form", comment: @comment, review: @review %>
-                </div>
-              <% else%>
-                <div class="center">
-                  Please <%= link_to "Sign In", new_user_session_path %> to leave a comment!
-                </div>
-              <% end %>
+                <% else%>
+                  <div class="center">
+                    Please <%= link_to "Sign In", new_user_session_path %> to leave a comment!
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
           <div class="center">

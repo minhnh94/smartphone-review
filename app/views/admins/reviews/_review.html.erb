@@ -1,11 +1,13 @@
 <tr>
-  <td><%= link_to review.title.html_safe, admins_review_path(review) %></td>
-  <td><%= review.content.html_safe %></td>
+  <td><%= link_to review.title, [:admins, review] %></td>
+  <td><%= review.summary.truncate(170, separator: " ") %></td>
   <td><span class="glyphicon glyphicon-eye-open"></span> <%= review.
-                                                             impressionist_count filter: :session_hash %></td>
+    impressionist_count filter: :session_hash %></td>
   <td>
-    <%= link_to "Edit Review", edit_admins_review_path(review), class: "btn btn-success" %>
-    <%= link_to "Delete Review", admins_review_path(review), method: :delete,
-                data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+    <%= link_to "Edit", edit_review_path(review),
+      class: "btn btn-success col-md-4 col-md-offset-1" %>
+    <%= link_to "Delete", review, method: :delete,
+      data: { confirm: "Are you sure?" },
+      class: "btn btn-danger col-md-4 col-md-offset-2" %>
   </td>
 </tr>

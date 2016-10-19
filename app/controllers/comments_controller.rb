@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
         redirect_to @review
       end
       format.js
-      @comment = Comment.new
+      @new_comment = Comment.new
     end
   end
 
