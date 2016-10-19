@@ -1,0 +1,10 @@
+<div class="comment-list">
+  <div><%= comment.content %></div>
+  <b><%= comment.user.email %></b>
+  <%= comment.created_at.strftime(" - %d-%m-%Y %H:%M ") %>
+  <% if current_user == comment.user %>
+    <%= link_to "delete", comment, method: :delete,
+      data: {confirm: "Are you sure?"}, remote: true,
+      class: "btn btn-xs btn-danger" %>
+  <% end %>
+</div>

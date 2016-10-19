@@ -1,0 +1,2 @@
+$('#comments-list').html('<%= escape_javascript render(@review.comments) %>');
+$('form').html('<%= escape_javascript(render('comments/form', comment: @comment, review: @review)) %>');

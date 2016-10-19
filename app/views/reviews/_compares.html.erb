@@ -1,0 +1,25 @@
+<div class="row compare equal">
+  <div class="col-md-6">
+    <div class="panel panel-default good">
+      <div class="panel-heading">
+        <h3>The Good</h3>
+      </div>
+
+      <div class="panel-body">
+        <%= simple_format @review.the_good, sanitize: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default bad">
+      <div class="panel-heading">
+        <h3>The Bad</h3>
+      </div>
+
+      <div class="panel-body">
+        <%= simple_format @review.the_bad, sanitize: true %>
+      </div>
+    </div>
+  </div>
+</div>

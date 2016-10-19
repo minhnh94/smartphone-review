@@ -52,26 +52,24 @@
                 "desc", remote: true}, class: "sort-link" %>
             </div>
           </div>
+
+          <br>
           <div class="scrolltop-anchor"></div>
-          <div id="reviews">
+          <div class="row" id="reviews">
             <%= render @reviews %>
           </div>
+
           <div class="center">
             <%= paginate @reviews, window: 3, remote: true %>
           </div>
         </div>
 
         <div class="col-md-4">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-              <%= render "search_form" %>
+          <%= render "search_form" %>
 
-              <div>
-                <hr>
-                <h2 class="center">Hot Reviews</h2>
-                <%= render partial: "hot_review", collection: @hot_reviews %>
-              </div>
-            </div>
+          <div class="hot-review">
+            <h3 class="center">Hot Reviews of the Month</h3>
+            <%= render partial: "hot_review", collection: @hot_reviews %>
           </div>
         </div>
       </div>

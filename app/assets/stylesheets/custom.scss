@@ -61,6 +61,11 @@ h2 {
   color: $gray-light;
 }
 
+h3 {
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -491,11 +496,28 @@ select {
   -moz-box-shadow: 1px 1px 5px 0 $shadow-color;
   box-shadow: 1px 1px 5px 0 $shadow-color;
   padding: 10px;
+  h3 {
+    font-size: 1.5em;
+  }
+  p {
+    font-size: 0.9em;
+    line-height: 1.5em;
+  }
 }
 
 .review-content {
+  margin-top: 10px;
   background-color: $white;
   border-radius: 10px;
+  h3 {
+    margin-top: 0;
+    font-size: 2.2em;
+    padding: 20px 20px 0px 20px;
+  }
+}
+
+.review-body {
+  padding: 20px;
 }
 
 .filter {
@@ -541,4 +563,160 @@ select {
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(37, 175, 97);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(37, 175, 97);
+}
+
+.quote {
+  color: #666;
+  margin: 15px;
+  font-size: 1.2em;
+  font-style: italic;
+  text-align: justify;
+}
+
+.input-group-addon {
+  color: #333;
+  min-width: 120px;
+}
+
+.author {
+  float: right;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 10px 20px 10px 10px;
+  color: #333;
+  span {
+    padding: 0 10px;
+  }
+}
+
+.rate {
+  margin-top: 40px;
+  background: #fff;
+  h4 {
+    background: #25af61;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-indent: 20px;
+    line-height: 40px;
+  }
+  .col {
+    width: 60%;
+    float: left;
+    margin: 10px 20px;
+    h5 {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 45px;
+    }
+    ul li {
+      list-style: none;
+      width: 100%;
+      float: left;
+      margin-bottom: 20px;
+      span {
+        font-size: 13px;
+      }
+      p {
+        display: block;
+      }
+      .bar {
+        border-radius: 4px;
+        background: #ebebeb;
+        height: 8px;
+        width: 100%;
+        float: left;
+        margin-top: 5px;
+        div {
+          height: 8px;
+          border-radius: 4px;
+        }
+        .color-1 {
+          background: #25af61;
+        }
+        .color-2 {
+          background: #ff6d00;
+        }
+        .color-3 {
+          background: #fdd835;
+        }
+        .color-4 {
+          background: #aeea00;
+        }
+        .color-5 {
+          background: #b2dfdb;
+        }
+      }
+    }
+  }
+}
+
+.rate:before, .rate:after {
+  content: " ";
+  display: table;
+}
+
+.rate:after {
+  clear: both;
+}
+
+.compare {
+  .panel.good {
+    margin-left: 20px;
+    margin-right: 0;
+  }
+  .panel.bad {
+    margin-left: 0;
+    margin-right: 20px;
+  }
+  h3 {
+    font-size: 1.5em;
+    text-align: center;
+    color: #fff;
+    margin-top: 5px;
+    padding: 0;
+  }
+  .good {
+    .panel-heading {
+      background: #25AF61;
+    }
+  }
+  .bad {
+    .panel-heading {
+      background: #FF6100;
+    }
+  }
+}
+
+.equal, .equal > div[class*='col-'] {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.search-box {
+  margin-top: 10px;
+}
+
+.hot-review {
+  h3 {
+    font-size: 1.5em;
+  }
+  .circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    font-size: 20px;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+    background: #25af61;
+    line-height: 3em;
+  }
+  span {
+    color: #666;
+  }
 }

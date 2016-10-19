@@ -11,6 +11,10 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @search = Review.search(params[:q])
+    @reviews = @search.result.order(sort_column + " " + sort_direction).
+      page(params[:page]).per 10
+    @hot_reviews = Review.order("counter_cache DESC limit 5")
     @review = Review.find_by_id params[:id]
     impressionist @review
     @comment = Comment.new
@@ -24,7 +28,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build review_params
     if @review.save
       flash[:success] = "The review has been successfully created."
-      redirect_to reviews_path
+      redirect_to review_path @review
     else
       flash.now[:danger] = "Failed to create the review."
       render "new"
@@ -51,7 +55,7 @@ class ReviewsController < ApplicationController
       @review.destroy
       flash[:success] = "The review has been deleted."
     end
-    redirect_to reviews_path
+    redirect_to user_path current_user
   end
 
   private
@@ -60,7 +64,9 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit :title, :content, :device_id
+    params.require(:review).permit :title, :content, :device_id, :cover_image,
+      :summary, :the_good, :the_bad, :score_design, :score_screen,
+      :score_performance, :score_battery, :score_camera
   end
 
   def correct_user

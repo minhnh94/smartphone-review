@@ -5,11 +5,18 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @review = Review.find(@comment.review_id)
     if @comment.save
-      flash[:success] = "Commented!"
-      redirect_to :back
+      respond_to do |format|
+        format.html do
+          flash[:success] = "Comment posted."
+          redirect_to @review
+        end
+        format.js { @new_comment = Comment.new }
+      end
     else
-      flash[:danger] = "Can not comment"
-      redirect_to :back
+      respond_to do |format|
+        format.html { render @review }
+        format.js { render action: "failed_create" }
+      end
     end
   end
 
@@ -17,8 +24,14 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.find(params[:id])
     @review = @comment.review
     @comment.destroy
-    flash[:success] = "Comment Deleted"
-    redirect_to :back
+    respond_to do |format|
+      format.html do
+        flash[:success] = "Comment deleted."
+        redirect_to @review
+      end
+      format.js
+      @comment = Comment.new
+    end
   end
 
   private

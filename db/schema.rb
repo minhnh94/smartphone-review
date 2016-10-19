@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006172214) do
+ActiveRecord::Schema.define(version: 20161018184406) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -75,10 +75,22 @@ ActiveRecord::Schema.define(version: 20161006172214) do
     t.integer  "user_id"
     t.text     "title"
     t.text     "content"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "counter_cache", default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "counter_cache",            default: 0
     t.integer  "device_id"
+    t.string   "cover_image_file_name"
+    t.string   "cover_image_content_type"
+    t.integer  "cover_image_file_size"
+    t.datetime "cover_image_updated_at"
+    t.text     "summary"
+    t.text     "the_good"
+    t.text     "the_bad"
+    t.integer  "score_design"
+    t.integer  "score_screen"
+    t.integer  "score_performance"
+    t.integer  "score_battery"
+    t.integer  "score_camera"
     t.index ["device_id"], name: "index_reviews_on_device_id"
   end
 
@@ -98,6 +110,7 @@ ActiveRecord::Schema.define(version: 20161006172214) do
     t.string   "provider"
     t.string   "uid"
     t.boolean  "admin",                  default: false
+    t.string   "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

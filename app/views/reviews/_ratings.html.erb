@@ -1,0 +1,57 @@
+<div class="rate">
+  <h4>Final Ratings</h4>
+  <div class="col">
+    <ul>
+      <li>
+        <p>
+          <span class="pull-left">Design</span>
+          <span class="pull-right"><%= @review.score_design %></span>
+        </p>
+        <div class="bar">
+          <%= content_tag :div, "", class: "color-1",
+            style: "width:#{@review.score_design / 10.0 * 100}%" %>
+        </div>
+      </li>
+      <li>
+        <p>
+          <span class="pull-left">Screen</span>
+          <span class="pull-right"><%= @review.score_screen %></span>
+        </p>
+        <div class="bar">
+          <%= content_tag :div, "", class: "color-2",
+            style: "width:#{@review.score_screen / 10.0 * 100}%" %>
+        </div>
+      </li>
+      <li>
+        <p>
+          <span class="pull-left">Performance</span>
+          <span class="pull-right"><%= @review.score_performance %></span>
+        </p>
+        <div class="bar">
+          <%= content_tag :div, "", class: "color-3",
+            style: "width:#{@review.score_performance / 10.0 * 100}%" %>
+        </div>
+      </li>
+      <li>
+        <p>
+          <span class="pull-left">Battery</span>
+          <span class="pull-right"><%= @review.score_battery %></span>
+        </p>
+        <div class="bar">
+          <%= content_tag :div, "", class: "color-4",
+            style: "width:#{@review.score_battery / 10.0 * 100}%" %>
+        </div>
+      </li>
+      <li>
+        <p>
+          <span class="pull-left">Camera</span>
+          <span class="pull-right"><%= @review.score_camera %></span>
+        </p>
+        <div class="bar">
+          <%= content_tag :div, "", class: "color-5",
+            style: "width:#{@review.score_camera / 10.0 * 100}%" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
