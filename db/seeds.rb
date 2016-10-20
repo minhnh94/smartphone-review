@@ -1,4 +1,9 @@
-User.create!(name: "Kago",
+User.destroy_all
+Device.destroy_all
+Review.destroy_all
+
+User.create!(
+  name: "Kago",
   email: "not_my_name@ymail.com",
   password: "123456",
   password_confirmation: "123456",

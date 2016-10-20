@@ -113,6 +113,10 @@ header {
   border-color: #25AF61;
 }
 
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+  max-height: 450px;
+}
+
 .dropdown:hover .dropdown-menu {
   margin-top: 5px;
   display: block;
@@ -523,6 +527,10 @@ select {
     font-size: 2em;
     padding: 20px 20px 0px 20px;
   }
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
 }
 
 .assessment-panel {
@@ -689,11 +697,13 @@ select {
     padding: 0;
   }
   .good {
+    min-width: 95%;
     .panel-heading {
       background: #25AF61;
     }
   }
   .bad {
+    min-width: 95%;
     .panel-heading {
       background: #FF6100;
     }
@@ -743,6 +753,11 @@ select {
   width: 46px;
   height: 46px;
   opacity: 0.5;
+}
+
+.carousel {
+  min-width: 400px;
+  min-height: 200px;
 }
 
 .carousel-inner > .item > img {
